@@ -23,7 +23,7 @@
                 </select>
             </div>
 
-            {!! Form::submit('create') !!}
+            {!! Form::submit('update') !!}
         {!! Form::close() !!}
     </div>
 @stop

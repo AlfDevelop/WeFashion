@@ -12,4 +12,8 @@ class Category extends Model
         'description',
         'id_parent'
     ];
+
+    public function products(){
+        return $this->belongsToMany('App\Product');
+    }
 }

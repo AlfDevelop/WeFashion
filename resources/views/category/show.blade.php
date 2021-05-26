@@ -17,7 +17,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($cat_child as $category)
+            @foreach($categories as $category)
                 <tr style="border:1px solid red;">
                     <td width=5% align="center" style="padding:5px;border-right:1px solid blue;">{{$category->id}}</td>
                     <td width=15% style="padding:5px;border-right:1px solid blue;">{{$category->title}}</td>
