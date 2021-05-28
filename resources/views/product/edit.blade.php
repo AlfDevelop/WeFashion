@@ -6,7 +6,7 @@
 </section>
 
     <div class="admin-form container">
-        {!! Form::model($product, ['route' => ['products.update', $product->id], 'method' => 'put']) !!}
+        {!! Form::model($product, ['route' => ['products.update', $product->id], 'method' => 'put', 'enctype' => 'multipart/form-data']) !!}
             <div class="form-group">
                 {!! Form::label('name', "Nom du produit") !!}
                 {!! Form::text('name', $product->name, ['class' => 'form-control']) !!}
@@ -40,9 +40,43 @@
                 </select>
             </div>
             <div class="form-group">
-                {!! Form::label('image', "Image") !!}
-                {!! Form::text('image', $product->image, ['class' => 'form-control']) !!}
+                <label style="display:block;">Tailles disponibles pour ce produit</label>
+
+                <div class="form-check form-switch">
+                    {!! Form::checkbox('size[]', 'XS', in_array('XS', $array) ? true : false) !!}
+                    {!! Form::label('size', "XS") !!}
+                </div>
+                
+                <div class="form-check">
+                    {!! Form::checkbox('size[]', 'S', in_array('S', $array) ? true : false) !!}
+                    {!! Form::label('size', "S") !!}
+                </div>
+
+                <div class="form-check">
+                    {!! Form::checkbox('size[]', 'M', in_array('M', $array) ? true : false) !!}
+                    {!! Form::label('size', "M") !!}
+                </div>
+
+                <div class="form-check">
+                    {!! Form::checkbox('size[]', 'L' , in_array('L', $array) ? true : false) !!}
+                    {!! Form::label('size', "L") !!}
+                </div>
+
+                <div class="form-check">
+                    {!! Form::checkbox('size[]', 'XL' , in_array('XL', $array) ? true : false) !!}
+                    {!! Form::label('size', "XL") !!}
+                </div>
+
+                
             </div>
+            <img style="width:250px;" src="{{asset('storage/images/'.$product->image) }}" alt="">
+            @if(empty($product->image))
+            <div class="form-group">
+                {!! Form::label('image', "Image") !!}
+                {!! Form::file('image',  ['class' => 'form-control']) !!}
+            </div>
+            @endif
+           
             <div class="form-group">
                 {!! Form::label('category_id', "Categorie :") !!}
                 <select name="category_id" class="form-control">

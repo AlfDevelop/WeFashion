@@ -11,7 +11,13 @@
                 {!! Form::label('title', "Nom de la catégorie") !!}
                 {!! Form::text('title', $category->title, ['class' => 'form-control']) !!}
             </div>
-
+            <div class="form-group">
+                {!! Form::label('active', "Actif") !!}
+                <select name="active" class="form-control">
+                    <option value="0">Non</option>
+                    <option value="1">Oui</option>
+                </select>
+            </div>
             <div class="form-group">
                 {!! Form::label('description', "Description") !!}
                 {!! Form::text('description', $category->description, ['class' => 'form-control']) !!}

@@ -6,7 +6,7 @@
 </section>
 
     <div class="admin-form container">
-        {!! Form::open(['url' => '/home/products']) !!}
+        {!! Form::open(['url' => '/home/products', 'enctype' => 'multipart/form-data']) !!}
             <div class="form-group">
                 {!! Form::label('name', "Nom du produit") !!}
                 {!! Form::text('name', "", ['class' => 'form-control']) !!}
@@ -40,8 +40,38 @@
                 </select>
             </div>
             <div class="form-group">
+                <label style="display:block;">Tailles disponibles pour ce produit</label>
+
+                <div class="form-check form-switch">
+                    {!! Form::checkbox('size[]', 'XS') !!}
+                    {!! Form::label('size', "XS") !!}
+                </div>
+                
+                <div class="form-check">
+                    {!! Form::checkbox('size[]', 'S') !!}
+                    {!! Form::label('size', "S") !!}
+                </div>
+
+                <div class="form-check">
+                    {!! Form::checkbox('size[]', 'M') !!}
+                    {!! Form::label('size', "M") !!}
+                </div>
+
+                <div class="form-check">
+                    {!! Form::checkbox('size[]', 'L') !!}
+                    {!! Form::label('size', "L") !!}
+                </div>
+
+                <div class="form-check">
+                    {!! Form::checkbox('size[]', 'XL') !!}
+                    {!! Form::label('size', "XL") !!}
+                </div>
+
+                
+            </div>
+            <div class="form-group">
                 {!! Form::label('image', "Image") !!}
-                {!! Form::text('image', "", ['class' => 'form-control']) !!}
+                {!! Form::file('image',  ['class' => 'form-control']) !!}
             </div>
             <div class="form-group">
                 {!! Form::label('category_id', "Categorie :") !!}

@@ -45,7 +45,7 @@
         <script>
             setTimeout(function(){ 
                 window.location = "/home/categories"; 
-            }, 6000);
+            }, 5000);
         </script>
     @endif
 

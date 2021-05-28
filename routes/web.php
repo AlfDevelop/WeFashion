@@ -2,7 +2,7 @@
 
 use App\Category;
 
-
+define('MEDIA_ROOT', '/storage/app/images/');
 Route::get('/', 'FrontController@index');
 Route::get('/product/{id}', 'FrontController@product');
 Route::get('/on-sale', 'FrontController@productsOnSale');

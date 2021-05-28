@@ -15,7 +15,14 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::where('id_parent', 0)->paginate(5);
-        return view('category.index')->with('categories', $categories);
+        $countCategories = Category::all()->count();
+        $countActiveCategories = $this->getActiveCategories();
+        $countInactiveCategories = $this->getInactiveCategories();
+        return view('category.index')
+        ->with('categories', $categories)
+        ->with('countCategories', $countCategories)
+        ->with('countActiveCategories', $countActiveCategories)
+        ->with('countInactiveCategories', $countInactiveCategories);
     }
 
     /**
@@ -40,7 +47,7 @@ class CategoryController extends Controller
         $category = new Category();
         $category->title = $request->title;
         $category->description = $request->description;
-        
+        $category->active = $request->active;
         $category->id_parent = $request->category_id;
      
         $category->save();
@@ -86,7 +93,7 @@ class CategoryController extends Controller
         $category = Category::find($id);
         $category->title = $request->title;
         $category->description = $request->description;
-        
+        $category->active = $request->active;
         $category->id_parent = $request->category_id;
      
         $category->update();
@@ -102,11 +109,19 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         $category = Category::find($id);
+        $cat_child = Category::where('id_parent', $category->id);
+        $cat_child->delete();
         $category->delete();
         return redirect('/home/categories');
     }
 
-    public function nbCategory(){
-        
+    public function getActiveCategories(){
+        $categories = Category::where('active', 1)->count();
+        return $categories;
     }
+    public function getInactiveCategories(){
+        $categories = Category::where('active', 0)->count();
+        return $categories;
+    }
+   
 }

@@ -3,7 +3,7 @@
 
 <div class="row">
     <div class="col-md-6">
-        <img src="https://via.placeholder.com/450" alt="">
+        <img src="{{  asset('storage/images/'.$product->image)  }}" alt="">
     </div>
     <div class="col-md-6">
         <h1 class="mt-0">{{$product->name}}<span>&nbsp;({{$product->reference}})</span></h1>

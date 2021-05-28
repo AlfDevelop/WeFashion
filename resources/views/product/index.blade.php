@@ -55,11 +55,23 @@
                 <td width=5%>{{$product->id}}</td>
                 <td width=10%>{{$product->name}}</td>
                 <td width=10%>{{$product->reference}}</td>
-                <td width=30%>{{$product->description}}</td>
-                <td width=20%>{{$product->category['title']}}</td>
-                <td width=20%>{{$product->price}}</td>
-                <td>{{$product->active}}</td>
-                <td width=5%>
+                <td width=40%>{{$product->description}}</td>
+                <td width=15%>
+                    @if(!empty($product->category['title'])) 
+                        <a href="/home/categories/{{$product->category['id']}}">{{$product->category['title']}}</a>
+                    @else
+                    Aucune catégorie
+                    @endif
+                </td>
+                <td width=5%>{{number_format($product->price,2)}} €</td>
+                <td width=10%>
+                    @if($product->active == 1)
+                        <i class="fas fa-check"></i>
+                    @else 
+                        <i class="fas fa-times"></i>
+                    @endif
+                </td>
+                <td width=10%>
                     <div class="admin-tab-action">
                         <a href="/home/products/{{$product->id}}">
                             <i class="fas fa-search-plus"></i>Afficher

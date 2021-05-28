@@ -17,8 +17,8 @@ class ProductController extends Controller
     {
         $products = Product::all();
         $countProduct = Product::all()->count();
-        $countActiveProduct = $this->getActiveProduct();
-        $countInactiveProduct = $this->getInactiveProduct();
+        $countActiveProduct = $this->getActiveProducts();
+        $countInactiveProduct = $this->getInactiveProducts();
         return view('product.index')->with('products', $products)->with('countActiveProduct', $countActiveProduct)->with('countInactiveProduct', $countInactiveProduct)->with('countProduct', $countProduct);
     }
 
@@ -42,15 +42,19 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        
         $product = new Product();
         $product->name = $request->name;
         $product->description = $request->description;
         $product->reference = $request->reference;
         $product->active = $request->active;
         $product->status = $request->status;
-        
+        $product->size = implode(';', $request->size);
         $product->price = $request->price;
-        $product->image = $request->image;
+        $extension = $request->file('image')->extension();
+        
+        $product->image = $product->name . '.' . $extension;
+        $request->file('image')->storeAs('public/images/', $product->name . '.' . $extension);
         $product->category_id = $request->category_id;
         $product->save();
         return redirect('/home/products');
@@ -81,7 +85,12 @@ class ProductController extends Controller
         
         $categories = Category::all();
         $product = Product::find($id);
-        return view('product.edit')->with('product', $product)->with('categories', $categories);
+        $getSize = Product::find($id)->size;
+        $array = explode(";", $getSize);
+        return view('product.edit')
+        ->with('product', $product)
+        ->with('categories', $categories)
+        ->with('array', $array);
     }
 
     /**
@@ -98,8 +107,14 @@ class ProductController extends Controller
         $product->description = $request->description;
         $product->reference = $request->reference;
         $product->active = $request->active;
+        $product->size = implode(';', $request->size);
         $product->status = $request->status;
-        $product->image = $request->image;
+        if(!empty($request->file('image'))){
+            $extension = $request->file('image')->extension();
+            $product->image = $product->name . '.' . $extension;
+            $request->file('image')->storeAs('public/images/', $product->name . '.' . $extension);
+        }
+        
         $product->category_id = $request->category_id;
         $product->update();
         return redirect('/home/products');
@@ -118,11 +133,11 @@ class ProductController extends Controller
         return redirect('/home/products');
     }
 
-    public function getActiveProduct(){
+    public function getActiveProducts(){
         $product = Product::where('active', 1)->count();
         return $product;
     }
-    public function getInactiveProduct(){
+    public function getInactiveProducts(){
         $product = Product::where('active', 0)->count();
         return $product;
     }
