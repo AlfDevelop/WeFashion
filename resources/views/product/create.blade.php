@@ -1,7 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container-fluid" >
+<section class="admin-header">
+    <h2>Ajouter un produit</h2>
+</section>
+
+    <div class="admin-form container">
         {!! Form::open(['url' => '/home/products']) !!}
             <div class="form-group">
                 {!! Form::label('name', "Nom du produit") !!}
@@ -15,6 +19,10 @@
             <div class="form-group">
                 {!! Form::label('reference', "Référence") !!}
                 {!! Form::text('reference', "", ['class' => 'form-control']) !!}
+            </div>
+            <div class="form-group">
+                {!! Form::label('price', "Prix") !!}
+                <input type="number" name="price" step="any" class="form-control"/>
             </div>
             <div class="form-group">
                 {!! Form::label('active', "Actif") !!}
@@ -45,7 +53,7 @@
                 </select>
             </div>
 
-            {!! Form::submit('create') !!}
+            {!! Form::submit('Ajouter',  ['class' => 'create-btn']) !!}
         {!! Form::close() !!}
     </div>
 @stop

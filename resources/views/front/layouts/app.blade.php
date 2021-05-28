@@ -15,7 +15,9 @@
        @include('front.inc.nav')
    </header>
     <main>
-        @yield('content')
+        <div class="container">
+            @yield('content')
+        </div>
     </main>
     <script src="{{ asset('js/app.js') }}"></script>
 </body>

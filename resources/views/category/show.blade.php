@@ -1,32 +1,52 @@
 @extends('layouts.app')
 
 @section('content')
-    <p>{{$category->title}}</p>
-
-    <ul>
-        @foreach($cat_child as $cat)
-            <li>{{$cat->title}}</li>
-        @endforeach
-    </ul>
-    <table width=100%>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nom</th>
-                <th>Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($categories as $category)
-                <tr style="border:1px solid red;">
-                    <td width=5% align="center" style="padding:5px;border-right:1px solid blue;">{{$category->id}}</td>
-                    <td width=15% style="padding:5px;border-right:1px solid blue;">{{$category->title}}</td>
-                    <td width=30% style="padding:5px;">{{$category->description}}</td>
-                    <td width=5%><a href="/home/categories/{{$category->id}}">Afficher</a></td>
-                    <td width=5%><a href="/home/categories/{{$category->id}}/edit">Editer</a></td>
+<section class="admin-header">
+    <h2>Catégorie {{$category->title}}</h2>
+</section>
+    @if($cat_child->isNotEmpty())
+        <table class="admin-tab" style="margin-top:50px;">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nom</th>
+                    <th>Description</th>
+                    <th></th>
                 </tr>
-           
-            @endforeach
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+
+            
+                    @foreach($cat_child as $cat)
+                        <tr>
+                            <td width=5%>{{$cat->id}}</td>
+                            <td width=15%>{{$cat->title}}</td>
+                            <td width=30%>{{$cat->description}}</td>
+                            <td width=5%>
+                                <section class="last-category">
+                                    <a class="admin-edit admin-tab-action" class="dropdown-item" href="/home/categories/{{$cat->id}}/edit"><i class="fas fa-edit"></i>Modifier</a>
+                                    <form action="/home/categories/{{$cat->id}}" method="post">
+                                        {{csrf_field()}}
+                                        <input type="hidden" name="_method" value="delete" />
+                                        <button type="submit" class="admin-tab-action admin-delete dropdown-item"><i class="fas fa-trash-alt"></i>Supprimer</button>
+                                    </form>
+                                </section>
+                            </td>
+                        </tr>
+                    @endforeach
+            
+            </tbody>
+        </table>
+    @else
+        <div class="container nocategories">
+            <h3>Il n'y a aucune catégorie présente dans {{$category->title}}</h3>
+            <p>Vous serez redirigé vers la liste des catégories dans quelques secondes</p>
+        </div>
+        <script>
+            setTimeout(function(){ 
+                window.location = "/home/categories"; 
+            }, 6000);
+        </script>
+    @endif
+
 @stop

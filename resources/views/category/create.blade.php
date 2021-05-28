@@ -1,7 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container-fluid" >
+    <section class="admin-header">
+        <h2>Ajouter une catégorie</h2>
+    </section>
+
+    <div class="admin-form container" >
         {!! Form::open(['url' => '/home/categories']) !!}
             <div class="form-group">
                 {!! Form::label('title', "Nom de la catégorie") !!}
@@ -22,8 +26,8 @@
                     @endforeach
                 </select>
             </div>
-
-            {!! Form::submit('create') !!}
+           
+            {!! Form::submit('Ajouter', ['class' => 'create-btn']) !!}
         {!! Form::close() !!}
     </div>
 @stop

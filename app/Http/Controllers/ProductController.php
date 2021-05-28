@@ -16,7 +16,10 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::all();
-        return view('product.index')->with('products', $products);
+        $countProduct = Product::all()->count();
+        $countActiveProduct = $this->getActiveProduct();
+        $countInactiveProduct = $this->getInactiveProduct();
+        return view('product.index')->with('products', $products)->with('countActiveProduct', $countActiveProduct)->with('countInactiveProduct', $countInactiveProduct)->with('countProduct', $countProduct);
     }
 
     /**
@@ -45,6 +48,8 @@ class ProductController extends Controller
         $product->reference = $request->reference;
         $product->active = $request->active;
         $product->status = $request->status;
+        
+        $product->price = $request->price;
         $product->image = $request->image;
         $product->category_id = $request->category_id;
         $product->save();
@@ -59,7 +64,9 @@ class ProductController extends Controller
      */
     public function show($id)
     {
+        
         $product = Product::find($id);
+       
         return view('product.show')->with('product', $product);
     }
 
@@ -71,8 +78,10 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
+        
+        $categories = Category::all();
         $product = Product::find($id);
-        return view('product.edit')->with('product', $product);
+        return view('product.edit')->with('product', $product)->with('categories', $categories);
     }
 
     /**
@@ -102,8 +111,19 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy($id)
     {
-        //
+        $product = Product::find($id);
+        $product->delete();
+        return redirect('/home/products');
+    }
+
+    public function getActiveProduct(){
+        $product = Product::where('active', 1)->count();
+        return $product;
+    }
+    public function getInactiveProduct(){
+        $product = Product::where('active', 0)->count();
+        return $product;
     }
 }

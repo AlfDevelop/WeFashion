@@ -1,8 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container-fluid" >
-        {!! Form::open(['url' => '/home/categories']) !!}
+<section class="admin-header">
+    <h2>Modifier {{$category->title}}</h2>
+</section>
+
+    <div class="admin-form container">
+        {!! Form::model($category, ['route' => ['categories.update', $category->id], 'method' => 'put']) !!}
             <div class="form-group">
                 {!! Form::label('title', "Nom de la catégorie") !!}
                 {!! Form::text('title', $category->title, ['class' => 'form-control']) !!}
@@ -23,7 +27,7 @@
                 </select>
             </div>
 
-            {!! Form::submit('update') !!}
+            {!! Form::submit('Modifier', ['class' => 'edit-btn']) !!}
         {!! Form::close() !!}
     </div>
 @stop

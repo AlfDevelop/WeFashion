@@ -3,7 +3,10 @@
 use App\Category;
 
 
-Route::get('/', function () {return view('front.index');});
+Route::get('/', 'FrontController@index');
+Route::get('/product/{id}', 'FrontController@product');
+Route::get('/on-sale', 'FrontController@productsOnSale');
+Route::get('/formen', 'FrontController@productsForMen');
 
 Auth::routes();
 

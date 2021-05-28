@@ -12,11 +12,12 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
 </head>
 <body style="background:#ececec;">
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top" style="border:none;margin:0;background:#282B30;">
-            <div class="container">
+            <div class="container-fluid">
                 <div class="navbar-header">
 
                     <!-- Collapsed Hamburger -->
@@ -46,12 +47,16 @@
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
+                        <li>
+                            <a href="/">Ma boutique</a>
+                        </li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu">
+                                    
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
@@ -65,9 +70,7 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li>
-                                <a href="/">Ma boutique</a>
-                            </li>
+                           
                         @endguest
                     </ul>
                 </div>
@@ -75,29 +78,17 @@
         </nav>
         <div style="background:#323A46;position:fixed;width:210px;height:100%;">
             <ul class="nav flex-column">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Categories
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <ul>
-                            <li>
-                                <a class="dropdown-item" href="/home/categories/create">Créer catégorie</a></li>
-                                <li>
-
-                                    <a class="dropdown-item" href="/home/categories">Liste</a>
-                                </li>
-                        </ul>
-                    </div>
+           
+                  <li class="nav-item">
+                    <a class="nav-link" href="/home/categories">Catégories</a>
                   </li>
-              
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Produits</a>
+                  <a class="nav-link" href="/home/products">Produits</a>
                 </li>
              
               </ul>
         </div>
-        <div class="container-fluid" style="margin-left:210px;">
+        <div style="margin-left:210px;">
             @yield('content')
         </div>
     </div>
