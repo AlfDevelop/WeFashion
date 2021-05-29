@@ -20,6 +20,9 @@
             @yield('content')
         </div>
     </main>
+    <footer>
+        @include('front.inc.footer')
+    </footer>
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

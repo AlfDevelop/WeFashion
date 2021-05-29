@@ -18,8 +18,6 @@ class ProductController extends Controller
      */
     public function index()
     {
-        
-  
         $products = Product::all();
         $countProduct = Product::all()->count();
         $countActiveProduct = $this->getActiveProducts();

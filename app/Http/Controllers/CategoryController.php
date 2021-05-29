@@ -124,13 +124,5 @@ class CategoryController extends Controller
         return $categories;
     }
 
-    public function getCategory($Category_id)
-    {
-        $category = Category::find($Category_id);
-        if($category !== null){
-            $products = $category->products->where('active', 1);
-            return view('front.partials.categoryproducts')->with('products', $products);
-        }
-    }
    
 }
