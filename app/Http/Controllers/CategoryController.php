@@ -123,5 +123,20 @@ class CategoryController extends Controller
         $categories = Category::where('active', 0)->count();
         return $categories;
     }
+
+    public function getCategoryProducts(Category $category){
+        $CategoryProducts = Category::with('products')->get();
+        dd($CategoryProducts);
+        return view('front.partials.categoryproducts')->with('CategoryProducts', $CategoryProducts);
+        
+    }
+    public function getCategory($Category_id)
+    {
+        $category = Category::find($Category_id);
+        if($category !== null){
+            $products = $category->products->where('active', 1);
+            return view('front.partials.categoryproducts')->with('products', $products);
+        }
+    }
    
 }
