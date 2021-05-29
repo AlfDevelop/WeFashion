@@ -8,14 +8,14 @@ use App\Category;
 class FrontController extends Controller
 {
     public function index(){
-        $products = Product::where('active', 1)->paginate(6);
+        $products = Product::where('active', 1)->paginate(15);
         return view('front.index')->with('products', $products);
     }
     public function product($id){
         $product = Product::find($id);
         return view('front.partials.product')->with('product', $product);
     }
-    public function productsOnSale(){
+    public function getProductsOnSale(){
         $products = Product::where([
             ['status','sale'],
             ['active', 1]

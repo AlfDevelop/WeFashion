@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Product;
 use App\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
+
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -15,6 +18,8 @@ class ProductController extends Controller
      */
     public function index()
     {
+        
+  
         $products = Product::all();
         $countProduct = Product::all()->count();
         $countActiveProduct = $this->getActiveProducts();
@@ -44,18 +49,7 @@ class ProductController extends Controller
     {
         
         $product = new Product();
-        $product->name = $request->name;
-        $product->description = $request->description;
-        $product->reference = $request->reference;
-        $product->active = $request->active;
-        $product->status = $request->status;
-        $product->size = implode(';', $request->size);
-        $product->price = $request->price;
-        $extension = $request->file('image')->extension();
-        
-        $product->image = $product->name . '.' . $extension;
-        $request->file('image')->storeAs('public/images/', $product->name . '.' . $extension);
-        $product->category_id = $request->category_id;
+        $this->saveProduct($product, $request);
         $product->save();
         return redirect('/home/products');
     }
@@ -85,11 +79,14 @@ class ProductController extends Controller
         
         $categories = Category::all();
         $product = Product::find($id);
-        $getSize = Product::find($id)->size;
-        $array = explode(";", $getSize);
+        $array = $this->getSize($id);
+        $active = $this->active($id);
+        $category_id = $this->getCategory($id);
         return view('product.edit')
         ->with('product', $product)
         ->with('categories', $categories)
+        ->with('active', $active)
+        ->with('category_id', $category_id)
         ->with('array', $array);
     }
 
@@ -103,19 +100,7 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $product = Product::find($id);
-        $product->name = $request->name;
-        $product->description = $request->description;
-        $product->reference = $request->reference;
-        $product->active = $request->active;
-        $product->size = implode(';', $request->size);
-        $product->status = $request->status;
-        if(!empty($request->file('image'))){
-            $extension = $request->file('image')->extension();
-            $product->image = $product->name . '.' . $extension;
-            $request->file('image')->storeAs('public/images/', $product->name . '.' . $extension);
-        }
-        
-        $product->category_id = $request->category_id;
+        $this->saveProduct($product, $request);
         $product->update();
         return redirect('/home/products');
     }
@@ -132,7 +117,23 @@ class ProductController extends Controller
         $product->delete();
         return redirect('/home/products');
     }
-
+    public function saveProduct($product, $request){
+        $product->name = $request->name;
+        $product->description = $request->description;
+        $product->reference = $request->reference;
+        $product->active = $request->active;
+    
+        $product->price = $request->price;
+        $product->size = implode(';', $request->size);
+        $product->status = $request->status;
+        if(!empty($request->file('image'))){
+            $extension = $request->file('image')->extension();
+            $product->image = $product->name . '.' . $extension;
+            $request->file('image')->storeAs('public/images/', $product->name . '.' . $extension);
+        }
+        
+        $product->category_id = $request->category_id;
+    }
     public function getActiveProducts(){
         $product = Product::where('active', 1)->count();
         return $product;
@@ -141,4 +142,20 @@ class ProductController extends Controller
         $product = Product::where('active', 0)->count();
         return $product;
     }
+
+    public function active($id){
+        $active = Product::find($id)->active;
+        return $active;
+    }
+    public function getCategory($id){
+        $category = Product::find($id)->category_id;
+        return $category;
+    }
+    public function getSize($id){
+        $getSize = Product::find($id)->size;
+        $size = explode(";", $getSize);
+        return $size;
+    }
+
+   
 }

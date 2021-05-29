@@ -124,12 +124,6 @@ class CategoryController extends Controller
         return $categories;
     }
 
-    public function getCategoryProducts(Category $category){
-        $CategoryProducts = Category::with('products')->get();
-        dd($CategoryProducts);
-        return view('front.partials.categoryproducts')->with('CategoryProducts', $CategoryProducts);
-        
-    }
     public function getCategory($Category_id)
     {
         $category = Category::find($Category_id);

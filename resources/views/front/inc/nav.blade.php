@@ -10,10 +10,10 @@
             <a class="nav-link" aria-current="page" href="/on-sale">Soldes</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link " aria-current="page" href="#">Homme</a>
+            <a class="nav-link " aria-current="page" href="/category/1/products">Homme</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Femmes</a>
+            <a class="nav-link" href="/category/2/products">Femmes</a>
           </li>
           
       </div>

@@ -4,7 +4,7 @@ use App\Category;
 
 Route::get('/', 'FrontController@index');
 Route::get('/product/{id}', 'FrontController@product');
-Route::get('/on-sale', 'FrontController@productsOnSale');
+Route::get('/on-sale', 'FrontController@getProductsOnSale');
 Route::get('/category/{Category_id}/products', 'CategoryController@getCategory');
 Auth::routes();
 

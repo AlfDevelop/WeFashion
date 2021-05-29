@@ -1,0 +1,13 @@
+.product{
+    display:flex;
+    justify-content:flex-start;
+    flex-wrap:wrap;
+}
+.product article{
+    width:250px;
+    margin:0 10px;
+    box-shadow:2px 2px 8px 0 rgb(0 0 0 / 20%);
+    position:relative;
+    height:385px;
+    padding:0;
+}

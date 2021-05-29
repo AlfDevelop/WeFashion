@@ -27,8 +27,8 @@
             <div class="form-group">
                 {!! Form::label('active', "Actif") !!}
                 <select name="active" class="form-control">
-                    <option value="0">Non</option>
                     <option value="1">Oui</option>
+                    <option value="0">Non</option>
                 </select>
             </div>
             <div class="form-group">

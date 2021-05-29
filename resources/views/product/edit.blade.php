@@ -27,8 +27,8 @@
             <div class="form-group">
                 {!! Form::label('active', "Actif") !!}
                 <select name="active" class="form-control">
-                    <option value="0">Non</option>
                     <option value="1">Oui</option>
+                    <option value="0" @if($active != 1) selected @endif>Non</option>
                 </select>
             </div>
             <div class="form-group">
@@ -82,7 +82,7 @@
                 <select name="category_id" class="form-control">
                     <option value="0"></option>
                     @foreach($categories as $category)
-                        <option value="{{$category->id}}">{{$category->title}}</option>
+                        <option value="{{$category->id}}" @if($category_id == $category->id) selected @endif>{{$category->title}}</option>
                     @endforeach
                 </select>
             </div>
