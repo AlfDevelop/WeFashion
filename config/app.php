@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'WeFashion'),
 
     /*
     |--------------------------------------------------------------------------
@@ -171,11 +171,11 @@ return [
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        WeFashion\Providers\AppServiceProvider::class,
+        WeFashion\Providers\AuthServiceProvider::class,
+        // WeFashion\Providers\BroadcastServiceProvider::class,
+        WeFashion\Providers\EventServiceProvider::class,
+        WeFashion\Providers\RouteServiceProvider::class,
 
     ],
 

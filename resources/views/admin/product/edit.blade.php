@@ -74,7 +74,7 @@
             
             @if(!empty($product->image))
            
-            <a class="deleteImage" href="/admin/products/deleteImage/{!!$product->id!!}" onclick='return confirm("Are you sure you want to delete ?")'>
+            <a class="deleteImage" href="/admin/products/deleteImage/{!!$product->id!!}" onclick='return confirm("Êtes-vous sûr de vouloir supprimer cette image ?")'>
                 <i class="fas fa-trash-alt"></i>
                 <span>Supprimer l'image pour en télécharger une nouvelle</span>
             </a> 

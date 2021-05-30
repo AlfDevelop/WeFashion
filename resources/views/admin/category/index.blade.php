@@ -81,7 +81,7 @@
                                         <form action="/admin/categories/{{$category->id}}" method="post">
                                             {{csrf_field()}}
                                             <input type="hidden" name="_method" value="delete" />
-                                            <button type="submit" class="admin-delete dropdown-item"><i class="fas fa-trash-alt"></i>Supprimer</button>
+                                            <button type="submit" class="admin-delete dropdown-item" onclick='return confirm("Êtes-vous sûr de vouloir supprimer cette catégorie ?")'><i class="fas fa-trash-alt"></i>Supprimer</button>
                                         </form>
                                     </div>
                                 </div>

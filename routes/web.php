@@ -10,7 +10,7 @@ Route::get('/category/{Category_id}/products', 'Front\FrontController@getCategor
 
 //Routing BackOffice
 Route::get('/admin/products/deleteImage/{id}', 'Admin\ProductController@deleteImage');
-Route::get('/home', 'Admin\HomeController@index')->name('home');
+Route::get('/admin', 'Admin\HomeController@index')->name('home');
 
 //Routing Resources
 Route::resource('/admin/categories', 'Admin\CategoryController');
@@ -18,4 +18,5 @@ Route::resource('/admin/products', 'Admin\ProductController');
 
 //Routing Auth
 Auth::routes();
+
 

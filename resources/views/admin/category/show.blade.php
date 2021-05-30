@@ -25,7 +25,7 @@
                             <td width=5%>
                                 <section class="last-category">
                                     <a class="admin-edit admin-tab-action" class="dropdown-item" href="/admin/categories/{{$cat->id}}/edit"><i class="fas fa-edit"></i>Modifier</a>
-                                    <form action="/home/categories/{{$cat->id}}" method="post">
+                                    <form action="/admin/categories/{{$cat->id}}" method="post">
                                         {{csrf_field()}}
                                         <input type="hidden" name="_method" value="delete" />
                                         <button type="submit" class="admin-tab-action admin-delete dropdown-item"><i class="fas fa-trash-alt"></i>Supprimer</button>

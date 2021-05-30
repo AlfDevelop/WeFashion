@@ -47,7 +47,7 @@
     
     {{$products->links()}}
 </div>
-  <div style="overflow-x: scroll;">
+@if($products->isNotEmpty())
     <table class="admin-tab products">
         <thead>
             <tr>
@@ -94,7 +94,11 @@
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                               <a class="admin-edit" class="dropdown-item" href="/admin/products/{{$product->id}}/edit"><i class="fas fa-edit"></i>Modifier</a>
-                              <a class="admin-delete" class="dropdown-item" href="#"><i class="fas fa-trash-alt"></i>Supprimer</a>
+                              <form action="/admin/products/{{$product->id}}" method="post">
+                                {{csrf_field()}}
+                                <input type="hidden" name="_method" value="delete" />
+                                <button type="submit" class="admin-delete dropdown-item" onclick='return confirm("Êtes-vous sûr de vouloir supprimer ce produit ?")'><i class="fas fa-trash-alt"></i>Supprimer</button>
+                            </form>
                             </div>
                           </div>
                     </div>
@@ -105,8 +109,12 @@
             @endforeach
         </tbody>
     </table>
-    
-  </div>
+    @else 
+    <div class="container nocategories">
+        <h3>Il n'existe encore aucun produit!</h3>
+        <p>Vous pouvez en créer un en cliquant <a href="/admin/products/create">ici</a> !</p>
+    </div>
+    @endif
     <div class="container-fluid">
         {{$products->links()}}
     </div>

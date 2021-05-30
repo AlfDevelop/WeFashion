@@ -1,5 +1,5 @@
 <section class="container">
-    <section class="d-flex justify-content-between my-5">
+    <section class="d-flex flex-wrap justify-content-between my-5">
         <article>
             <h3>Informations</h3>
             <ul>

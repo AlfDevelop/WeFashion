@@ -17,7 +17,7 @@ class CreateProductsTable extends Migration
             $table->increments('id');
             $table->char('name', 100);
             $table->text('description', 1048)->nullable();
-            $table->char('reference', 40)->nullable();
+            $table->char('reference', 16)->nullable();
             $table->boolean('active');
             $table->double('price', 8, 2);
             $table->enum('status', ['sale','standard']);

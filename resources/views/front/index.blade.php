@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h1>Derniers produits</h1>
+<h1 class="main-title text-center">Tous nos produits</h1>
 
 <section class="d-flex justify-content-between">
     <article>

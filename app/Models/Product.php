@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Models;
+namespace WeFashion\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Category;
+use WeFashion\Models\Category;
 
 class Product extends Model
 {

@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace WeFashion\Http\Controllers\Admin;
 
-use App\Models\Product;
-use App\Models\Category;
+use WeFashion\Models\Product;
+use WeFashion\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Session;
-use App\Http\Controllers\Controller;
+use WeFashion\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 
-use App\Http\Requests\ProductStoreRequest;
+use WeFashion\Http\Requests\ProductStoreRequest;
 
 
 class ProductController extends Controller
@@ -60,7 +60,7 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Product  $product
+     * @param  \WeFashion\Product  $product
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -74,7 +74,7 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Product  $product
+     * @param  \WeFashion\Product  $product
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -97,7 +97,7 @@ class ProductController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Product  $product
+     * @param  \WeFashion\Product  $product
      * @return \Illuminate\Http\Response
      */
     public function update(ProductStoreRequest $request, $id)
@@ -111,7 +111,7 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Product  $product
+     * @param  \WeFashion\Product  $product
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

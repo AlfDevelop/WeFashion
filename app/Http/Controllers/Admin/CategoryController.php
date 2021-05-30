@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace WeFashion\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Models\Category;
+use WeFashion\Http\Controllers\Controller;
+use WeFashion\Models\Category;
 use Illuminate\Http\Request;
 use Session;
-use App\Http\Requests\CategoryStoreRequest;
+use WeFashion\Http\Requests\CategoryStoreRequest;
 
 class CategoryController extends Controller
 {
@@ -59,7 +59,7 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Category  $category
+     * @param  \WeFashion\Category  $category
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -73,7 +73,7 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Category  $category
+     * @param  \WeFashion\Category  $category
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -91,7 +91,7 @@ class CategoryController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Category  $category
+     * @param  \WeFashion\Category  $category
      * @return \Illuminate\Http\Response
      */
     public function update(CategoryStoreRequest $request, $id)
@@ -107,7 +107,7 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Category  $category
+     * @param  \WeFashion\Category  $category
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

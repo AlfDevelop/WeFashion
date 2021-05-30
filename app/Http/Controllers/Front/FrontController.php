@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Front;
-use App\Http\Controllers\Controller;
+namespace WeFashion\Http\Controllers\Front;
+use WeFashion\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Product;
-use App\Models\Category;
+use WeFashion\Models\Product;
+use WeFashion\Models\Category;
 
 class FrontController extends Controller
 {

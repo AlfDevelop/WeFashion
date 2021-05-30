@@ -2,7 +2,7 @@
 
 @section('content')
 
-        <div style="margin-left:210px;">
+        <div style="margin-left:210px;margin-top:50px;">
             <div class="container-fluid">
                 <h1>Bienvenue  {{ Auth::user()->name }}</h1>
             </div>

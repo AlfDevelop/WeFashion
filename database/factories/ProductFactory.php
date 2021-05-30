@@ -3,7 +3,7 @@
 use Faker\Generator as Faker;
 
 
-$factory->define(App\Models\Product::class, function (Faker $faker) {
+$factory->define(WeFashion\Models\Product::class, function (Faker $faker) {
     $menImages = scandir(public_path('images/hommes'));
     $womenImages = scandir(public_path('images/femmes'));
     unset($womenImages[0]);
@@ -20,13 +20,13 @@ $factory->define(App\Models\Product::class, function (Faker $faker) {
     }
     return [
         'name' => $faker->word,
-        'description' => $faker->text($maxNbChars = 200),  
-        'reference' => $faker->text($maxNbChars = 10), 
+        'description' => $faker->text($maxNbChars = 400),  
+        'reference' => $faker->text($maxNbChars = 16), 
         'active' => $faker->numberBetween($min = 0, $max = 1),
         'category_id' => $category,
         'image' => $fakerImage,
         'price' => $faker->randomFloat($nbMaxDecimals = 2, $min = 10.00, $max = 70.00), 
         'status' => $faker->randomElement(['standard', 'sale']),
-        'size' => 'XS'
+        'size' => 'XS;S;M;L;XL'
     ];
 });

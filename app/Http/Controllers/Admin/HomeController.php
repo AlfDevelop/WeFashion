@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace WeFashion\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use WeFashion\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
