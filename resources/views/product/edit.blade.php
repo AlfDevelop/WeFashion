@@ -69,10 +69,18 @@
 
                 
             </div>
-            <img style="width:250px;" src="{{asset('storage/images/'.$product->image) }}" alt="">
-            @if(empty($product->image))
+            
+            {!! Form::label('image', "Image") !!}
+            <img style="width:250px;display:block;" src="{{asset('storage/images/'.$product->image) }}" alt="">
+            
+            @if(!empty($product->image))
+           
+            <a class="deleteImage" href="/home/products/deleteImage/{!!$product->id!!}" onclick='return confirm("Are you sure you want to delete ?")'>
+                <i class="fas fa-trash-alt"></i>
+                <span>Supprimer l'image pour en télécharger une nouvelle</span>
+            </a> 
+            @else 
             <div class="form-group">
-                {!! Form::label('image', "Image") !!}
                 {!! Form::file('image',  ['class' => 'form-control']) !!}
             </div>
             @endif
@@ -89,5 +97,7 @@
 
             {!! Form::submit('Modifier',  ['class' => 'edit-btn']) !!}
         {!! Form::close() !!}
+
+    
     </div>
 @stop

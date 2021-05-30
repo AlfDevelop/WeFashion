@@ -6,6 +6,7 @@ Route::get('/', 'FrontController@index');
 Route::get('/product/{id}', 'FrontController@product');
 Route::get('/on-sale', 'FrontController@getProductsOnSale');
 Route::get('/category/{Category_id}/products', 'FrontController@getCategory');
+Route::get('/home/products/deleteImage/{id}', 'ProductController@deleteImage');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -123,7 +123,13 @@
 .nocategories h3, .nocategories p{
     text-align:center;
 }
-
+.deleteImage{
+    margin:10px 0;
+    display:block;
+}
+.deleteImage span{
+    margin-left:5px;
+}
 /* BEGIN ICONS */
 .fa-search-plus{
     margin-right:5px;
@@ -155,5 +161,8 @@
 .fa-times{
     color:#E08F95;
     font-size:22px;
+}
+.fa-trash-alt{
+    font-size:20px;
 }
 /* END ICONS */

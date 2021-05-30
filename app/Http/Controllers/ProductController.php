@@ -155,5 +155,11 @@ class ProductController extends Controller
         return $size;
     }
 
+        public function deleteImage($id){
+            $product =   Product::find( $id);
+            $product->image = '';
+            $product->update(); 
+            return redirect('/home/products/'.$id.'/edit');
+        }
    
 }
