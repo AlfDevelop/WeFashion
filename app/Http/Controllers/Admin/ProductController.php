@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
@@ -22,7 +23,7 @@ class ProductController extends Controller
         $countProduct = Product::all()->count();
         $countActiveProduct = $this->getActiveProducts();
         $countInactiveProduct = $this->getInactiveProducts();
-        return view('product.index')->with('products', $products)->with('countActiveProduct', $countActiveProduct)->with('countInactiveProduct', $countInactiveProduct)->with('countProduct', $countProduct);
+        return view('admin.product.index')->with('products', $products)->with('countActiveProduct', $countActiveProduct)->with('countInactiveProduct', $countInactiveProduct)->with('countProduct', $countProduct);
     }
 
     /**
@@ -34,7 +35,7 @@ class ProductController extends Controller
     {
         $categories = Category::all();
         $products = Product::all();
-        return view('product.create')->with('products', $products)->with('categories', $categories);
+        return view('admin.product.create')->with('products', $products)->with('categories', $categories);
     }
 
     /**
@@ -63,7 +64,7 @@ class ProductController extends Controller
         
         $product = Product::find($id);
        
-        return view('product.show')->with('product', $product);
+        return view('admin.product.show')->with('product', $product);
     }
 
     /**
@@ -80,7 +81,7 @@ class ProductController extends Controller
         $array = $this->getSize($id);
         $active = $this->active($id);
         $category_id = $this->getCategory($id);
-        return view('product.edit')
+        return view('admin.product.edit')
         ->with('product', $product)
         ->with('categories', $categories)
         ->with('active', $active)

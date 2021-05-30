@@ -1,15 +1,15 @@
-@extends('layouts.app')
+@extends('admin.layouts.app')
 
 @section('content')
-    <section class="admin-header">
-        <h2>Ajouter une catégorie</h2>
-    </section>
+<section class="admin-header">
+    <h2>Modifier {{$category->title}}</h2>
+</section>
 
-    <div class="admin-form container" >
-        {!! Form::open(['url' => '/home/categories']) !!}
+    <div class="admin-form container">
+        {!! Form::model($category, ['route' => ['categories.update', $category->id], 'method' => 'put']) !!}
             <div class="form-group">
                 {!! Form::label('title', "Nom de la catégorie") !!}
-                {!! Form::text('title', "", ['class' => 'form-control']) !!}
+                {!! Form::text('title', $category->title, ['class' => 'form-control']) !!}
             </div>
             <div class="form-group">
                 {!! Form::label('active', "Actif") !!}
@@ -20,7 +20,7 @@
             </div>
             <div class="form-group">
                 {!! Form::label('description', "Description") !!}
-                {!! Form::text('description', "", ['class' => 'form-control']) !!}
+                {!! Form::text('description', $category->description, ['class' => 'form-control']) !!}
             </div>
 
             <div class="form-group">
@@ -32,8 +32,8 @@
                     @endforeach
                 </select>
             </div>
-           
-            {!! Form::submit('Ajouter', ['class' => 'create-btn']) !!}
+
+            {!! Form::submit('Modifier', ['class' => 'edit-btn']) !!}
         {!! Form::close() !!}
     </div>
 @stop

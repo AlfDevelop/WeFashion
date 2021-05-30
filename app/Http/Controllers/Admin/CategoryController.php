@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -18,7 +19,7 @@ class CategoryController extends Controller
         $countCategories = Category::all()->count();
         $countActiveCategories = $this->getActiveCategories();
         $countInactiveCategories = $this->getInactiveCategories();
-        return view('category.index')
+        return view('admin.category.index')
         ->with('categories', $categories)
         ->with('countCategories', $countCategories)
         ->with('countActiveCategories', $countActiveCategories)
@@ -33,7 +34,7 @@ class CategoryController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('category.create')->with('categories', $categories);
+        return view('admin.category.create')->with('categories', $categories);
     }
 
     /**
@@ -65,7 +66,7 @@ class CategoryController extends Controller
         $category = Category::find($id);
         $cat_child = Category::where('id_parent', $id)->get();
       
-        return view('category.show')->with('category', $category)->with('cat_child', $cat_child);
+        return view('admin.category.show')->with('category', $category)->with('cat_child', $cat_child);
     }
 
     /**
@@ -78,7 +79,7 @@ class CategoryController extends Controller
     {
         $categories = Category::all();
         $category = Category::find($id);
-        return view('category.edit')->with('category', $category)->with('categories', $categories);
+        return view('admin.category.edit')->with('category', $category)->with('categories', $categories);
     }
 
     /**

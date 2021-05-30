@@ -1,13 +1,14 @@
 <?php
 
 use App\Models\Category;
-Route::get('/', 'FrontController@index');
-Route::get('/product/{id}', 'FrontController@product');
-Route::get('/on-sale', 'FrontController@getProductsOnSale');
-Route::get('/category/{Category_id}/products', 'FrontController@getCategory');
+
+Route::get('/', 'Front\FrontController@index');
+Route::get('/product/{id}', 'Front\FrontController@product');
+Route::get('/on-sale', 'Front\FrontController@getProductsOnSale');
+Route::get('/category/{Category_id}/products', 'Front\FrontController@getCategory');
 Route::get('/home/products/deleteImage/{id}', 'ProductController@deleteImage');
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::resource('/home/categories', 'CategoryController');
-Route::resource('/home/products', 'ProductController');
+Route::get('/home', 'Admin\HomeController@index')->name('home');
+Route::resource('/home/categories', 'Admin\CategoryController');
+Route::resource('/home/products', 'Admin\ProductController');

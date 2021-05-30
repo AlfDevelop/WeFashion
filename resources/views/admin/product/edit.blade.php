@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('admin.layouts.app')
 
 @section('content')
 <section class="admin-header">
@@ -34,8 +34,7 @@
             <div class="form-group">
                 {!! Form::label('status', "Etat") !!}
                 <select name="status" class="form-control">
-                    <option value="new">Nouveau</option>
-                    <option value="used">Occasion</option>
+                    <option value="standard">Standard</option>
                     <option value="sale">Promotion</option>
                 </select>
             </div>
