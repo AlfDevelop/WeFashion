@@ -26,7 +26,7 @@ $factory->define(App\Product::class, function (Faker $faker) {
         'category_id' => $category,
         'image' => $fakerImage,
         'price' => $faker->randomFloat($nbMaxDecimals = 2, $min = 10.00, $max = 70.00), 
-        'status' => $faker->randomElement(['new', 'sale']),
+        'status' => $faker->randomElement(['standard', 'sale']),
         'size' => 'XS'
     ];
 });

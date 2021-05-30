@@ -20,7 +20,7 @@ class CreateProductsTable extends Migration
             $table->char('reference', 40);
             $table->boolean('active');
             $table->double('price', 8, 2);
-            $table->enum('status', ['sale', 'new', 'used', 'standard']);
+            $table->enum('status', ['sale','standard']);
             $table->string('size');
             $table->string('image');
             $table->unsignedInteger('category_id');

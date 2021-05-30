@@ -1,7 +1,6 @@
 <?php
 
-use App\Category;
-
+use App\Models\Category;
 Route::get('/', 'FrontController@index');
 Route::get('/product/{id}', 'FrontController@product');
 Route::get('/on-sale', 'FrontController@getProductsOnSale');
