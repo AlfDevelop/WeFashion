@@ -42,27 +42,27 @@
                 <label style="display:block;">Tailles disponibles pour ce produit</label>
 
                 <div class="form-check form-switch">
-                    {!! Form::checkbox('size[]', 'XS', in_array('XS', $array) ? true : false) !!}
+                    {!! Form::checkbox('size[]', 'XS', in_array('XS', $sizes) ? true : false) !!}
                     {!! Form::label('size', "XS") !!}
                 </div>
                 
                 <div class="form-check">
-                    {!! Form::checkbox('size[]', 'S', in_array('S', $array) ? true : false) !!}
+                    {!! Form::checkbox('size[]', 'S', in_array('S', $sizes) ? true : false) !!}
                     {!! Form::label('size', "S") !!}
                 </div>
 
                 <div class="form-check">
-                    {!! Form::checkbox('size[]', 'M', in_array('M', $array) ? true : false) !!}
+                    {!! Form::checkbox('size[]', 'M', in_array('M', $sizes) ? true : false) !!}
                     {!! Form::label('size', "M") !!}
                 </div>
 
                 <div class="form-check">
-                    {!! Form::checkbox('size[]', 'L' , in_array('L', $array) ? true : false) !!}
+                    {!! Form::checkbox('size[]', 'L' , in_array('L', $sizes) ? true : false) !!}
                     {!! Form::label('size', "L") !!}
                 </div>
 
                 <div class="form-check">
-                    {!! Form::checkbox('size[]', 'XL' , in_array('XL', $array) ? true : false) !!}
+                    {!! Form::checkbox('size[]', 'XL' , in_array('XL', $sizes) ? true : false) !!}
                     {!! Form::label('size', "XL") !!}
                 </div>
 
@@ -74,7 +74,7 @@
             
             @if(!empty($product->image))
            
-            <a class="deleteImage" href="/home/products/deleteImage/{!!$product->id!!}" onclick='return confirm("Are you sure you want to delete ?")'>
+            <a class="deleteImage" href="/admin/products/deleteImage/{!!$product->id!!}" onclick='return confirm("Are you sure you want to delete ?")'>
                 <i class="fas fa-trash-alt"></i>
                 <span>Supprimer l'image pour en télécharger une nouvelle</span>
             </a> 
@@ -99,4 +99,11 @@
 
     
     </div>
+    <section class="container error-message">
+        @if(!empty($errors->first()))
+            <div class="alert alert-danger">
+                {{$errors->first()}}
+            </div> 
+        @endif 
+    </section>
 @stop

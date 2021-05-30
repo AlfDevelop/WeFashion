@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Session;
+use App\Http\Requests\CategoryStoreRequest;
 
 class CategoryController extends Controller
 {
@@ -43,16 +45,15 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryStoreRequest $request)
     {
         $category = new Category();
-        $category->title = $request->title;
-        $category->description = $request->description;
-        $category->active = $request->active;
-        $category->id_parent = $request->category_id;
-     
+       
+        $this->saveCategory($category, $request);
+    
         $category->save();
-        return redirect('/home/categories');
+        Session::put('success', 'Catégorie ' . $category->title . ' ajouté avec succès.');
+        return redirect('/admin/categories');
     }
 
     /**
@@ -79,7 +80,11 @@ class CategoryController extends Controller
     {
         $categories = Category::all();
         $category = Category::find($id);
-        return view('admin.category.edit')->with('category', $category)->with('categories', $categories);
+        $active = $this->active($id);
+        return view('admin.category.edit')
+        ->with('category', $category)
+        ->with('categories', $categories)
+        ->with('active', $active);
     }
 
     /**
@@ -89,16 +94,14 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CategoryStoreRequest $request, $id)
     {
         $category = Category::find($id);
-        $category->title = $request->title;
-        $category->description = $request->description;
-        $category->active = $request->active;
-        $category->id_parent = $request->category_id;
-     
+        
+        $this->saveCategory($category, $request);
         $category->update();
-        return redirect('/home/categories');
+        
+        return redirect('/admin/categories');
     }
 
     /**
@@ -113,9 +116,19 @@ class CategoryController extends Controller
         $cat_child = Category::where('id_parent', $category->id);
         $cat_child->delete();
         $category->delete();
-        return redirect('/home/categories');
+        return redirect('/admin/categories');
+    }
+    public function saveCategory($category, $request){
+        $category->title = $request->title;
+        $category->description = $request->description;
+        $category->active = $request->active;
+        $category->id_parent = $request->category_id;
     }
 
+    public function active($id){
+        $active = Category::find($id)->active;
+        return $active;
+    }
     public function getActiveCategories(){
         $categories = Category::where('active', 1)->count();
         return $categories;

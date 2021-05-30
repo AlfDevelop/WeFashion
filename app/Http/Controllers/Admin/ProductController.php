@@ -6,9 +6,12 @@ use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
-
+use Session;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
+
+use App\Http\Requests\ProductStoreRequest;
+
 
 class ProductController extends Controller
 {
@@ -19,7 +22,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        $products = Product::paginate(15);
         $countProduct = Product::all()->count();
         $countActiveProduct = $this->getActiveProducts();
         $countInactiveProduct = $this->getInactiveProducts();
@@ -44,13 +47,14 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductStoreRequest $request)
     {
         
         $product = new Product();
         $this->saveProduct($product, $request);
         $product->save();
-        return redirect('/home/products');
+        Session::put('success', 'Produit ' . $product->name . ' ajouté avec succès.');
+        return redirect('/admin/products');
     }
 
     /**
@@ -78,7 +82,7 @@ class ProductController extends Controller
         
         $categories = Category::all();
         $product = Product::find($id);
-        $array = $this->getSize($id);
+        $sizes = $this->getSize($id);
         $active = $this->active($id);
         $category_id = $this->getCategory($id);
         return view('admin.product.edit')
@@ -86,7 +90,7 @@ class ProductController extends Controller
         ->with('categories', $categories)
         ->with('active', $active)
         ->with('category_id', $category_id)
-        ->with('array', $array);
+        ->with('sizes', $sizes);
     }
 
     /**
@@ -96,12 +100,12 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProductStoreRequest $request, $id)
     {
         $product = Product::find($id);
         $this->saveProduct($product, $request);
         $product->update();
-        return redirect('/home/products');
+        return redirect('/admin/products');
     }
 
     /**
@@ -114,14 +118,18 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         $product->delete();
-        return redirect('/home/products');
+        return redirect('/admin/products');
     }
+
+    /* 
+        Function to store data from request in upload or store functions
+    */
     public function saveProduct($product, $request){
+
         $product->name = $request->name;
         $product->description = $request->description;
         $product->reference = $request->reference;
         $product->active = $request->active;
-    
         $product->price = $request->price;
         $product->size = implode(';', $request->size);
         $product->status = $request->status;
@@ -133,34 +141,54 @@ class ProductController extends Controller
         
         $product->category_id = $request->category_id;
     }
+
+    /* 
+        Function to get active products count in products panel on backoffice
+    */
     public function getActiveProducts(){
         $product = Product::where('active', 1)->count();
         return $product;
     }
+
+    /* 
+        Function to get inactive products count in products panel on backoffice
+    */
     public function getInactiveProducts(){
         $product = Product::where('active', 0)->count();
         return $product;
     }
 
+    /* 
+        Function to check if product is active or not to show icon
+    */
     public function active($id){
         $active = Product::find($id)->active;
         return $active;
     }
+
+    /* 
+        Function to get category from a product
+    */
     public function getCategory($id){
         $category = Product::find($id)->category_id;
         return $category;
     }
+    /* 
+        Function to get size from a product
+    */
     public function getSize($id){
         $getSize = Product::find($id)->size;
         $size = explode(";", $getSize);
         return $size;
     }
-
-        public function deleteImage($id){
-            $product =   Product::find( $id);
-            $product->image = '';
-            $product->update(); 
-            return redirect('/home/products/'.$id.'/edit');
+    /* 
+        Function to delete image from product in product edit page
+    */
+    public function deleteImage($id){
+        $product =   Product::find( $id);
+        $product->image = '';
+        $product->update(); 
+        return redirect('/admin/products/'.$id.'/edit');
         }
    
 }

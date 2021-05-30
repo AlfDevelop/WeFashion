@@ -3,7 +3,7 @@
 use Faker\Generator as Faker;
 
 
-$factory->define(App\Product::class, function (Faker $faker) {
+$factory->define(App\Models\Product::class, function (Faker $faker) {
     $menImages = scandir(public_path('images/hommes'));
     $womenImages = scandir(public_path('images/femmes'));
     unset($womenImages[0]);

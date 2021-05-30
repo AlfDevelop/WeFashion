@@ -4,7 +4,8 @@
     align-items:center;
     background:#FFF;
     padding:0 20px;
-    min-height:80px;
+    
+    margin-top:50px;
 }
 .admin-header h2{
     font-size:26px;
@@ -166,3 +167,56 @@
     font-size:20px;
 }
 /* END ICONS */
+
+.error-message{
+    margin-top:25px;
+}
+@media screen and (max-width:1070px){
+    .admin-tab thead{
+        display:none;
+    }
+    .admin-tab tr{
+        display:flex;
+        flex-direction:column;
+    }
+    .admin-tab{
+        width:95%;
+    }
+    .admin-tab tr td{
+        width:100% !important;
+    }
+    .admin-tab.products tr td:nth-child(1)::before{
+        content: 'ID : ';
+    }
+    .admin-tab.products tr td:nth-child(2)::before{
+        content: 'Nom : ';
+    }
+    .admin-tab.products tr td:nth-child(3)::before{
+        content: 'Référence : ';
+    }
+    .admin-tab.products tr td:nth-child(4)::before{
+        content: 'Description : ';
+    }
+    .admin-tab.products tr td:nth-child(5)::before{
+        content: 'Catégorie : ';
+    }
+    .admin-tab.products tr td:nth-child(6)::before{
+        content: 'Prix : ';
+    }
+    .admin-tab.products tr td:nth-child(7)::before{
+        content: 'Etat : ';
+    }
+
+    .admin-tab.categories tr td:nth-child(1)::before{
+        content: 'ID : ';
+    }
+    .admin-tab.categories tr td:nth-child(2)::before{
+        content: 'Nom : ';
+    }
+    .admin-tab.categories tr td:nth-child(3)::before{
+        content: 'Description : ';
+    }
+    .admin-tab.categories tr td:nth-child(4)::before{
+        content: 'Etat : ';
+    }
+}

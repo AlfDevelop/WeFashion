@@ -24,7 +24,7 @@
                             <td width=30%>{{$cat->description}}</td>
                             <td width=5%>
                                 <section class="last-category">
-                                    <a class="admin-edit admin-tab-action" class="dropdown-item" href="/home/categories/{{$cat->id}}/edit"><i class="fas fa-edit"></i>Modifier</a>
+                                    <a class="admin-edit admin-tab-action" class="dropdown-item" href="/admin/categories/{{$cat->id}}/edit"><i class="fas fa-edit"></i>Modifier</a>
                                     <form action="/home/categories/{{$cat->id}}" method="post">
                                         {{csrf_field()}}
                                         <input type="hidden" name="_method" value="delete" />
@@ -44,7 +44,7 @@
         </div>
         <script>
             setTimeout(function(){ 
-                window.location = "/home/categories"; 
+                window.location = "/admin/categories"; 
             }, 5000);
         </script>
     @endif

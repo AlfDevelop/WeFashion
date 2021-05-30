@@ -14,8 +14,8 @@
             <div class="form-group">
                 {!! Form::label('active', "Actif") !!}
                 <select name="active" class="form-control">
-                    <option value="0">Non</option>
                     <option value="1">Oui</option>
+                    <option value="0" @if($active != 1) selected @endif >Non</option>
                 </select>
             </div>
             <div class="form-group">
@@ -36,4 +36,11 @@
             {!! Form::submit('Modifier', ['class' => 'edit-btn']) !!}
         {!! Form::close() !!}
     </div>
+    <section class="container error-message">
+        @if(!empty($errors->first()))
+            <div class="alert alert-danger">
+                {{$errors->first()}}
+            </div> 
+        @endif 
+    </section>
 @stop

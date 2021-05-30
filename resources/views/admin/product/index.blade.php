@@ -4,7 +4,7 @@
 <section class="admin-header">
     <h2>Produits</h2>
     <article>
-        <a class="admin-add" href="/home/products/create">
+        <a class="admin-add" href="/admin/products/create">
             <i class="fas fa-plus-circle"></i>
             <p>Ajouter un produit</p>
         </a>
@@ -35,8 +35,20 @@
         </div>
     </article>
 </section>
-
-    <table class="admin-tab">
+<section class="container-fluid p-0">
+    @if(Session::has('success')) 
+        <div class="alert alert-success">
+            {{Session::get('success')}}
+        </div>
+        {{Session::put('success', null)}}
+    @endif
+</section>
+<div class="container-fluid">
+    
+    {{$products->links()}}
+</div>
+  <div style="overflow-x: scroll;">
+    <table class="admin-tab products">
         <thead>
             <tr>
                 <th>ID</th>
@@ -58,7 +70,7 @@
                 <td width=40%>{{$product->description}}</td>
                 <td width=15%>
                     @if(!empty($product->category['title'])) 
-                        <a href="/home/categories/{{$product->category['id']}}">{{$product->category['title']}}</a>
+                        <a href="/admin/categories/{{$product->category['id']}}">{{$product->category['title']}}</a>
                     @else
                     Aucune catégorie
                     @endif
@@ -73,7 +85,7 @@
                 </td>
                 <td width=10%>
                     <div class="admin-tab-action">
-                        <a href="/home/products/{{$product->id}}">
+                        <a href="/admin/products/{{$product->id}}">
                             <i class="fas fa-search-plus"></i>Afficher
                         </a>
                         <div class="dropdown">
@@ -81,7 +93,7 @@
                                 <i class="fas fa-caret-down"></i>
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                              <a class="admin-edit" class="dropdown-item" href="/home/products/{{$product->id}}/edit"><i class="fas fa-edit"></i>Modifier</a>
+                              <a class="admin-edit" class="dropdown-item" href="/admin/products/{{$product->id}}/edit"><i class="fas fa-edit"></i>Modifier</a>
                               <a class="admin-delete" class="dropdown-item" href="#"><i class="fas fa-trash-alt"></i>Supprimer</a>
                             </div>
                           </div>
@@ -93,4 +105,9 @@
             @endforeach
         </tbody>
     </table>
+    
+  </div>
+    <div class="container-fluid">
+        {{$products->links()}}
+    </div>
 @stop

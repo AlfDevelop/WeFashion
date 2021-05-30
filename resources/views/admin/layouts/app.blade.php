@@ -15,9 +15,9 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
 </head>
-<body style="background:#ececec;">
+<body>
     <div id="app">
-        <nav class="navbar navbar-default navbar-static-top" style="border:none;margin:0;background:#282B30;">
+        <nav class="navbar navbar-default navbar-fixed-top" style="border:none;margin:0;background:#282B30;">
             <div class="container-fluid">
                 <div class="navbar-header">
 
@@ -81,10 +81,10 @@
             <ul class="nav flex-column">
            
                   <li class="nav-item">
-                    <a class="nav-link" href="/home/categories">Catégories</a>
+                    <a class="nav-link" href="/admin/categories">Catégories</a>
                   </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/home/products">Produits</a>
+                  <a class="nav-link" href="/admin/products">Produits</a>
                 </li>
              
               </ul>

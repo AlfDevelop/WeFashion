@@ -1,12 +1,20 @@
 @extends('admin.layouts.app')
 
 @section('content')
-<section class="admin-header">
-    <h2>Ajouter un produit</h2>
-</section>
-
+    <section class="admin-header">
+        <h2>Ajouter un produit</h2>
+    </section>
+    
+    <section class="container error-message">
+        @if(!empty($errors->first()))
+            <div class="alert alert-danger">
+                {{$errors->first()}}
+            </div> 
+        @endif 
+    </section>
+    
     <div class="admin-form container">
-        {!! Form::open(['url' => '/home/products', 'enctype' => 'multipart/form-data']) !!}
+        {!! Form::open(['url' => '/admin/products', 'enctype' => 'multipart/form-data']) !!}
             <div class="form-group">
                 {!! Form::label('name', "Nom du produit") !!}
                 {!! Form::text('name', "", ['class' => 'form-control']) !!}
@@ -34,8 +42,7 @@
             <div class="form-group">
                 {!! Form::label('status', "Etat") !!}
                 <select name="status" class="form-control">
-                    <option value="new">Nouveau</option>
-                    <option value="used">Occasion</option>
+                    <option value="Standard">Standard</option>
                     <option value="sale">Promotion</option>
                 </select>
             </div>
@@ -86,4 +93,5 @@
             {!! Form::submit('Ajouter',  ['class' => 'create-btn']) !!}
         {!! Form::close() !!}
     </div>
+ 
 @stop
