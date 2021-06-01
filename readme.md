@@ -15,10 +15,10 @@ Supprimer le dossier storage dans le dossier public/ à la racine du projet.
 
 ------------------------------------------------------------- 
 
-Saisir la commande "composer update"
-Saisir la commande "php artisan storage:link" (pour l'upload d'image)
-Saisir la commande "php artisan migrate:fresh --seed" pour effectuer les migrations et peupler de data la Base de données.
-Saisir la commande "php artisan serve"
+Saisir la commande "composer update" <br>
+Saisir la commande "php artisan storage:link" (pour l'upload d'image) <br>
+Saisir la commande "php artisan migrate:fresh --seed" pour effectuer les migrations et peupler de data la Base de données. <br>
+Saisir la commande "php artisan serve" <br>
 
 Pour pouvoir accéder au back office, tapez "/admin" à la fin de l'URL. Réaliser une inscription grâce au bouton le permettant, vous serez redirigé vers le dashboard.
 
