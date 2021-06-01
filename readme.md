@@ -1,3 +1,32 @@
+Installation de WeFashion :
+
+Créez une base de données sur votre serveur par exemple : wefashion
+
+Copiez le fichier ".env.example" qui est à la racine du dossier et le renommer en ".env"
+
+Remplissez-le fichier ".env" en fonction de votre configuration :
+
+Dans la partie DB, saisissez les informations de connexion à votre base de données. 
+DB_DATABASE=nom de votre base de donnée 
+DB_USERNAME=root par default 
+DB_PASSWORD=votre mot de passe
+
+Supprimer le dossier storage dans le dossier public/ à la racine du projet.
+
+------------------------------------------------------------- 
+
+Saisir la commande "composer update"
+Saisir la commande "php artisan storage:link" (pour l'upload d'image)
+Saisir la commande "php artisan migrate:fresh --seed" pour effectuer les migrations et peupler de data la Base de données.
+Saisir la commande "php artisan serve"
+
+Pour pouvoir accéder au back office, tapez "/admin" à la fin de l'URL. Réaliser une inscription grâce au bouton le permettant, vous serez redirigé vers le dashboard.
+
+
+
+
+
+
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 <p align="center">
