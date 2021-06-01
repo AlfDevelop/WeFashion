@@ -6,7 +6,7 @@ Copiez le fichier ".env.example" qui est à la racine du dossier et le renommer 
 
 Remplissez-le fichier ".env" en fonction de votre configuration :
 
-Dans la partie DB, saisissez les informations de connexion à votre base de données. 
+Dans la partie DB, saisissez les informations de connexion à votre base de données. <br>
 DB_DATABASE=nom de votre base de donnée 
 DB_USERNAME=root par default 
 DB_PASSWORD=votre mot de passe
